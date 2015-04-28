@@ -1,0 +1,2 @@
+# QSemVer
+Semantic Versioning Qt 
