@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 2.8)
+project(SemVer)
+find_package(Qt4 REQUIRED COMPONENTS QtCore QtTest)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+include_directories(inc tst)
+add_executable(SemVerTest inc/SemVer.h src/SemVer.cpp tst/TestMain.cpp tst/SemVerUnitTest.cpp tst/SemVerUnitTest.h)
+target_link_libraries(SemVerTest Qt4::QtTest)
