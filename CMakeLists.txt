@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.8.11)
 project(SemVer)
 find_package(Qt4 REQUIRED COMPONENTS QtCore QtTest)
 set(CMAKE_AUTOMOC ON)
