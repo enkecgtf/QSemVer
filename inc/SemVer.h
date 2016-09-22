@@ -183,6 +183,6 @@ namespace SemanticVersioning
     class bad_format_exception: public std::runtime_error
     {
     public:
-        bad_format_exception(): std::runtime_error("Bad version format.") {};
+        bad_format_exception(): std::runtime_error("Bad version format.") {}
     };
 }
