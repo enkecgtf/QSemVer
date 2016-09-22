@@ -114,7 +114,7 @@ namespace SemanticVersioning
          *
          * @return str the string that was build
          */
-        QString str(void) const;
+        QString str() const;
         /// @}
 
         /// @name Get version elements implementation
