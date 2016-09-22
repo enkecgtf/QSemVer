@@ -8,9 +8,6 @@ class SemVerUnitTest:
     Q_OBJECT
 
 private slots:
-
-    void initTestCase() {};
-    void cleanupTestCase() {};
     void testCreation();
     void testSet();
     void testComparison();
