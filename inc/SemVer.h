@@ -11,8 +11,8 @@
 
 #include <QString>
 
-// needed for exception error class
 #include <stdexcept>
+
 
 
 namespace SemanticVersioning

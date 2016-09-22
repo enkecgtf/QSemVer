@@ -10,6 +10,8 @@
 
 #include "SemVer.h"
 
+
+
 using SemanticVersioning::SemVersion;
 
 
@@ -142,6 +144,7 @@ void SemVersion::set(QString const& version)
         this->build = QString(version.mid(plusPos + 1));
     }
 }
+
 
 
 QString SemVersion::str() const
