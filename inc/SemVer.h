@@ -1,3 +1,4 @@
+#pragma once
 ///////////////////////////////////////////////////////////
 // SemVer.h
 // Declaration of the class SemVersion
@@ -7,8 +8,6 @@
 //
 // The Artistic License 2.0
 ///////////////////////////////////////////////////////////
-#ifndef SEMVER_H_
-#define SEMVER_H_
 
 #include <QString>
 
@@ -187,4 +186,3 @@ namespace SemanticVersioning
         bad_format_exception(): std::runtime_error("Bad version format.") {};
     };
 }
-#endif /* SEMVER_H_ */

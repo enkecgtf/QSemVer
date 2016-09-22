@@ -1,5 +1,4 @@
-#ifndef SEMVER_UNITTEST_H_
-#define SEMVER_UNITTEST_H_
+#pragma once
 
 #include <QObject>
 
@@ -16,5 +15,3 @@ private slots:
     void testSet();
     void testComparison();
 };
-
-#endif /* SEMVER_UNITTEST_H_ */
