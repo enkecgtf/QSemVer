@@ -19,25 +19,25 @@ SemVersion::SemVersion(quint16 major, quint16 minor, quint16 patch)
 }
 
 
-SemVersion::SemVersion(quint16 major, quint16 minor, quint16 patch, const QString& pre_release, const QString& build)
+SemVersion::SemVersion(quint16 major, quint16 minor, quint16 patch, QString const& pre_release, QString const& build)
 {
     this->set(major, minor, patch, pre_release, build);
 }
 
 
-SemVersion::SemVersion(const QString& version)
+SemVersion::SemVersion(QString const& version)
 {
     this->set(version);
 }
 
 
-bool SemVersion::operator==(const SemVersion& other) const
+bool SemVersion::operator==(SemVersion const& other) const
 {
     return (this->str() == other.str());
 }
 
 
-bool SemVersion::operator>(const SemVersion& other) const
+bool SemVersion::operator>(SemVersion const& other) const
 {
     if (this->major > other.major)
     {
@@ -83,7 +83,7 @@ void SemVersion::set(quint16 major, quint16 minor, quint16 patch)
 }
 
 
-void SemVersion::set(quint16 major, quint16 minor, quint16 patch, const QString& pre_release, const QString& build)
+void SemVersion::set(quint16 major, quint16 minor, quint16 patch, QString const& pre_release, QString const& build)
 {
     this->set(major, minor, patch);
     this->pre_release = QString(pre_release);
@@ -91,7 +91,7 @@ void SemVersion::set(quint16 major, quint16 minor, quint16 patch, const QString&
 }
 
 
-void SemVersion::set(const QString& version)
+void SemVersion::set(QString const& version)
 {
     unsigned int firstDotPos;
     unsigned int secondDotPos;

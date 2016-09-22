@@ -35,8 +35,8 @@ namespace SemanticVersioning
     {
     public:
         SemVersion(quint16 major, quint16 minor, quint16 patch);
-        SemVersion(quint16 major, quint16 minor, quint16 patch, const QString& pre_release, const QString& build);
-        explicit SemVersion(const QString& version);
+        SemVersion(quint16 major, quint16 minor, quint16 patch, QString const& pre_release, QString const& build);
+        explicit SemVersion(QString const& version);
 
         /// @name Semantic versioning implementation
         /// @{
@@ -48,7 +48,7 @@ namespace SemanticVersioning
         * @retval true if comparison was successful
         * @retval false otherwise
         */
-        bool operator==(const SemVersion& version) const;
+        bool operator==(SemVersion const& version) const;
 
         /**
         * Compares whether the given version is greater than the actual version
@@ -58,7 +58,7 @@ namespace SemanticVersioning
         * @retval true if comparison was successful
         * @retval false otherwise
         */
-        bool operator>(const SemVersion& version) const;
+        bool operator>(SemVersion const& version) const;
 
         /**
         * Sets the version elements to given parameters.
@@ -78,14 +78,14 @@ namespace SemanticVersioning
         * @param pre_release the pre_release version
         * @param build the build version
         */
-        void set(quint16 major, quint16 minor, quint16 patch, const QString& pre_release, const QString& build);
+        void set(quint16 major, quint16 minor, quint16 patch, QString const& pre_release, QString const& build);
 
         /**
          * Sets the version elements to content of version.
          *
          * @param version the version string
          */
-        void set(const QString& version);
+        void set(QString const& version);
 
         /**
         * Creates a version string with the current parameters.
