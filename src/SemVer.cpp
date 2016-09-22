@@ -18,57 +18,57 @@ using SemanticVersioning::SemVersion;
 
 SemVersion::SemVersion(quint16 aMajorVersion, quint16 aMinorVersion, quint16 aPatchVersion)
 {
-    this->set(aMajorVersion, aMinorVersion, aPatchVersion);
+    set(aMajorVersion, aMinorVersion, aPatchVersion);
 }
 
 
 SemVersion::SemVersion(quint16 aMajorVersion, quint16 aMinorVersion, quint16 aPatchVersion, QString const& aPreReleaseVersion, QString const& aBuildVersion)
 {
-    this->set(aMajorVersion, aMinorVersion, aPatchVersion, aPreReleaseVersion, aBuildVersion);
+    set(aMajorVersion, aMinorVersion, aPatchVersion, aPreReleaseVersion, aBuildVersion);
 }
 
 
 SemVersion::SemVersion(QString const& aVersionStringToParse)
 {
-    this->set(aVersionStringToParse);
+    set(aVersionStringToParse);
 }
 
 
 
 bool SemVersion::operator==(SemVersion const& aVersionToCompareTo) const
 {
-    return (this->str() == aVersionToCompareTo.str());
+    return (str() == aVersionToCompareTo.str());
 }
 
 
 bool SemVersion::operator>(SemVersion const& aVersionToCompareTo) const
 {
-    if (this->major > aVersionToCompareTo.major)
+    if (major > aVersionToCompareTo.major)
     {
         return true;
     }
 
-    if (this->major < aVersionToCompareTo.major)
+    if (major < aVersionToCompareTo.major)
     {
         return false;
     }
 
-    if (this->minor > aVersionToCompareTo.minor)
+    if (minor > aVersionToCompareTo.minor)
     {
         return true;
     }
 
-    if (this->minor < aVersionToCompareTo.minor)
+    if (minor < aVersionToCompareTo.minor)
     {
         return false;
     }
 
-    if (this->patch > aVersionToCompareTo.patch)
+    if (patch > aVersionToCompareTo.patch)
     {
         return true;
     }
 
-    if (this->patch < aVersionToCompareTo.patch)
+    if (patch < aVersionToCompareTo.patch)
     {
         return false;
     }
@@ -80,19 +80,19 @@ bool SemVersion::operator>(SemVersion const& aVersionToCompareTo) const
 
 void SemVersion::set(quint16 aMajorVersion, quint16 aMinorVersion, quint16 aPatchVersion)
 {
-    this->major = aMajorVersion;
-    this->minor = aMinorVersion;
-    this->patch = aPatchVersion;
-    this->pre_release = QString();
-    this->build = QString();
+    major = aMajorVersion;
+    minor = aMinorVersion;
+    patch = aPatchVersion;
+    pre_release = QString();
+    build = QString();
 }
 
 
 void SemVersion::set(quint16 aMajorVersion, quint16 aMinorVersion, quint16 aPatchVersion, QString const& aPreReleaseVersion, QString const& aBuildVersion)
 {
-    this->set(aMajorVersion, aMinorVersion, aPatchVersion);
-    this->pre_release = QString(aPreReleaseVersion);
-    this->build = QString(aBuildVersion);
+    set(aMajorVersion, aMinorVersion, aPatchVersion);
+    pre_release = QString(aPreReleaseVersion);
+    build = QString(aBuildVersion);
 }
 
 
@@ -114,26 +114,26 @@ void SemVersion::set(QString const& aVersionStringToSet)
         throw bad_format_exception();
     }
 
-    this->major = static_cast<quint16>(aVersionStringToSet.mid(0, firstDotPos).toUInt(&ok, 10));
-    this->minor = static_cast<quint16>(aVersionStringToSet.mid(firstDotPos + 1, secondDotPos - firstDotPos - 1).toUInt(&ok, 10));
+    major = static_cast<quint16>(aVersionStringToSet.mid(0, firstDotPos).toUInt(&ok, 10));
+    minor = static_cast<quint16>(aVersionStringToSet.mid(firstDotPos + 1, secondDotPos - firstDotPos - 1).toUInt(&ok, 10));
 
     if (dashPos == -1 && plusPos == -1)
     {
-        this->patch = static_cast<quint16>(aVersionStringToSet.mid(secondDotPos + 1).toUInt(&ok, 10));
-        this->pre_release = QString();
-        this->build = QString();
+        patch = static_cast<quint16>(aVersionStringToSet.mid(secondDotPos + 1).toUInt(&ok, 10));
+        pre_release = QString();
+        build = QString();
     }
     else if (plusPos == -1)
     {
-        this->patch = static_cast<quint16>(aVersionStringToSet.mid(secondDotPos + 1, dashPos - secondDotPos - 1).toUInt(&ok, 10));
-        this->pre_release = QString(aVersionStringToSet.mid(dashPos + 1));
-        this->build = QString();
+        patch = static_cast<quint16>(aVersionStringToSet.mid(secondDotPos + 1, dashPos - secondDotPos - 1).toUInt(&ok, 10));
+        pre_release = QString(aVersionStringToSet.mid(dashPos + 1));
+        build = QString();
     }
     else if (dashPos == -1)
     {
-        this->patch = static_cast<quint16>(aVersionStringToSet.mid(secondDotPos + 1, plusPos - secondDotPos - 1).toUInt(&ok, 10));
-        this->pre_release = QString();
-        this->build = QString(aVersionStringToSet.mid(plusPos + 1));
+        patch = static_cast<quint16>(aVersionStringToSet.mid(secondDotPos + 1, plusPos - secondDotPos - 1).toUInt(&ok, 10));
+        pre_release = QString();
+        build = QString(aVersionStringToSet.mid(plusPos + 1));
     }
     else
     {
@@ -142,9 +142,9 @@ void SemVersion::set(QString const& aVersionStringToSet)
             throw bad_format_exception();
         }
 
-        this->patch = static_cast<quint16>(aVersionStringToSet.mid(secondDotPos + 1, dashPos - secondDotPos - 1).toUInt(&ok, 10));
-        this->pre_release = QString(aVersionStringToSet.mid(dashPos + 1, plusPos - dashPos - 1));
-        this->build = QString(aVersionStringToSet.mid(plusPos + 1));
+        patch = static_cast<quint16>(aVersionStringToSet.mid(secondDotPos + 1, dashPos - secondDotPos - 1).toUInt(&ok, 10));
+        pre_release = QString(aVersionStringToSet.mid(dashPos + 1, plusPos - dashPos - 1));
+        build = QString(aVersionStringToSet.mid(plusPos + 1));
     }
 }
 
@@ -154,16 +154,16 @@ QString SemVersion::str() const
 {
     QString stream;
 
-    stream.append(this->major).append('.').append(this->minor).append('.').append(this->patch);
+    stream.append(major).append('.').append(minor).append('.').append(patch);
 
-    if (this->pre_release.length() > 0)
+    if (pre_release.length() > 0)
     {
-        stream.append('-').append(this->pre_release);
+        stream.append('-').append(pre_release);
     }
 
-    if (this->build.length() > 0)
+    if (build.length() > 0)
     {
-        stream.append('+').append(this->build);
+        stream.append('+').append(build);
     }
 
     return stream;
