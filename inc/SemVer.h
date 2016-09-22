@@ -34,8 +34,31 @@ namespace SemanticVersioning
     class SemVersion
     {
     public:
+        /**
+         * Creates a new Semantic Version from `major`, `minor` and `patch` values.
+         *
+         * @param major  major value to use
+         * @param minor  minor value to use
+         * @param patch  patch value to use
+         */
         SemVersion(quint16 major, quint16 minor, quint16 patch);
+
+        /**
+         * Creates a new Semantic Version from `major`, `minor` and `patch` values AND `pre_release` and `build` info.
+         *
+         * @param major  major value to use
+         * @param minor  minor value to use
+         * @param patch  patch value to use
+         * @param pre_release  pre-release value to use
+         * @param build  build value to use
+         */
         SemVersion(quint16 major, quint16 minor, quint16 patch, QString const& pre_release, QString const& build);
+
+        /**
+         * Creates a new Semantic Version by parsing the given `version` string.
+         *
+         * @param version  version string to parse
+         */
         explicit SemVersion(QString const& version);
 
         /// @name Semantic versioning implementation
@@ -61,23 +84,23 @@ namespace SemanticVersioning
         bool operator>(SemVersion const& version) const;
 
         /**
-        * Sets the version elements to given parameters.
-        *
-        * @param major the major version
-        * @param minor the minor version
-        * @param patch the patch version
-        */
+         * Sets the version elements to given parameters.
+         *
+         * @param major the major version
+         * @param minor the minor version
+         * @param patch the patch version
+         */
         void set(quint16 major, quint16 minor, quint16 patch);
 
         /**
-        * Sets the version elements to given parameters.
-        *
-        * @param major the major version
-        * @param minor the minor version
-        * @param patch the patch version
-        * @param pre_release the pre_release version
-        * @param build the build version
-        */
+         * Sets the version elements to given parameters.
+         *
+         * @param major the major version
+         * @param minor the minor version
+         * @param patch the patch version
+         * @param pre_release the pre_release version
+         * @param build the build version
+         */
         void set(quint16 major, quint16 minor, quint16 patch, QString const& pre_release, QString const& build);
 
         /**
@@ -88,10 +111,10 @@ namespace SemanticVersioning
         void set(QString const& version);
 
         /**
-        * Creates a version string with the current parameters.
-        *
-        * @return str the string that was build
-        */
+         * Creates a version string with the current parameters.
+         *
+         * @return str the string that was build
+         */
         QString str(void) const;
         /// @}
 
