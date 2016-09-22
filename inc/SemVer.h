@@ -27,6 +27,7 @@ namespace SemanticVersioning
     *    or as 1 string containing aMajorVersion, aMinorVersion, aPatchVersion, aPreReleaseVersion and aBuildVersion
     *
     * @author Nicolai Enke
+    * @author Soeren Sproessig
     * @version 1
     */
     class SemVersion

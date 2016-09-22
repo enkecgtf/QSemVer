@@ -3,7 +3,7 @@
 // Implementation of the class SemVersion
 //
 // Original version: https://github.com/KokaKiwi/semver-implementations
-// Qt port by: Nicolai Enke
+// Qt port by: Nicolai Enke, some adoptions by Soeren Sproessig
 //
 // The Artistic License 2.0
 ///////////////////////////////////////////////////////////
