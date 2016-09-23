@@ -98,22 +98,17 @@ void SemVersion::set(quint16 aMajorVersion, quint16 aMinorVersion, quint16 aPatc
 
 void SemVersion::set(QString const& aVersionStringToSet)
 {
-    unsigned int firstDotPos;
-    unsigned int secondDotPos;
-    unsigned int dashPos;
-    unsigned int plusPos;
-    bool ok;
-
-    firstDotPos = aVersionStringToSet.indexOf('.');
-    secondDotPos = aVersionStringToSet.indexOf('.', firstDotPos + 1);
-    dashPos = aVersionStringToSet.indexOf('-', secondDotPos + 1);
-    plusPos = aVersionStringToSet.indexOf('+', secondDotPos + 1);
+    auto firstDotPos = aVersionStringToSet.indexOf('.');
+    auto secondDotPos = aVersionStringToSet.indexOf('.', firstDotPos + 1);
+    auto dashPos = aVersionStringToSet.indexOf('-', secondDotPos + 1);
+    auto plusPos = aVersionStringToSet.indexOf('+', secondDotPos + 1);
 
     if (secondDotPos == -1)
     {
         throw bad_format_exception();
     }
 
+    bool ok;
     major = static_cast<quint16>(aVersionStringToSet.mid(0, firstDotPos).toUInt(&ok, 10));
     minor = static_cast<quint16>(aVersionStringToSet.mid(firstDotPos + 1, secondDotPos - firstDotPos - 1).toUInt(&ok, 10));
 
