@@ -147,9 +147,7 @@ void SemVersion::set(QString const& aVersionStringToSet)
 
 QString SemVersion::str() const
 {
-    QString stream;
-
-    stream.append(major).append('.').append(minor).append('.').append(patch);
+    QString stream = QStringLiteral("%1.%2.%3").arg(major).arg(minor).arg(patch);
 
     if (pre_release.length() > 0)
     {
