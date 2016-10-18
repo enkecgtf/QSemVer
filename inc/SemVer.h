@@ -1,3 +1,4 @@
+#pragma once
 ///////////////////////////////////////////////////////////
 // SemVer.h
 // Declaration of the class SemVersion
@@ -7,98 +8,121 @@
 //
 // The Artistic License 2.0
 ///////////////////////////////////////////////////////////
-#ifndef SEMVER_H_
-#define SEMVER_H_
 
 #include <QString>
 
-// needed for exception error class
 #include <stdexcept>
+
 
 
 namespace SemanticVersioning
 {
     /**
-    * This class provides semantic versioning for Qt.
+    * This class provides Semantic Versioning for Qt.
     * For further details see: http://semver.org/
     *
     * The class supports versions set by:
-    *    - major, minor, patch each as quint16
-    *    - major, minor, patch each as quint16 and pre_release, build as QString
-    *    or as 1 string containing major, minor, patch, pre_release and build
-    *
+    *    - aMajorVersion, aMinorVersion, aPatchVersion each as quint16
+    *    - aMajorVersion, aMinorVersion, aPatchVersion each as quint16 and aPreReleaseVersion, aBuildVersion as QString
+    *    or as 1 string containing aMajorVersion, aMinorVersion, aPatchVersion, aPreReleaseVersion and aBuildVersion
     *
     * @author Nicolai Enke
+    * @author Soeren Sproessig
     * @version 1
     */
     class SemVersion
     {
     public:
-        SemVersion(quint16 major, quint16 minor, quint16 patch);
-        SemVersion(quint16 major, quint16 minor, quint16 patch, const QString& pre_release, const QString& build);
-        explicit SemVersion(const QString& version);
+        /**
+         * Creates a new Semantic Version from `aMajorVersion`, `aMinorVersion` and `aPatchVersion` values.
+         *
+         * @param aMajorVersion  major value to use
+         * @param aMinorVersion  minor value to use
+         * @param aPatchVersion  patch value to use
+         */
+        SemVersion(quint16 aMajorVersion, quint16 aMinorVersion, quint16 aPatchVersion);
 
-        /// @name Semantic versioning implementation
+        /**
+         * Creates a new Semantic Version from `aMajorVersion`, `aMinorVersion` and `aPatchVersion` values AND `aPreReleaseVersion` and `aBuildVersion` info.
+         *
+         * @param aMajorVersion  major value to use
+         * @param aMinorVersion  minor value to use
+         * @param aPatchVersion  patch value to use
+         * @param aPreReleaseVersion  pre-release value to use
+         * @param aBuildVersion  build value to use
+         */
+        SemVersion(quint16 aMajorVersion, quint16 aMinorVersion, quint16 aPatchVersion, QString const& aPreReleaseVersion, QString const& aBuildVersion);
+
+        /**
+         * Creates a new Semantic Version by parsing the given `aVersionStringToParse` string.
+         *
+         * @param aVersionStringToParse  version string to parse
+         */
+        explicit SemVersion(QString const& aVersionStringToParse);
+
+        /// @name Semantic Versioning implementation
         /// @{
         /**
         * Compares whether the given version equals the actual version
         *
-        * @param version the version to compare to
+        * @param aVersionToCompareTo the version to compare to
         *
         * @retval true if comparison was successful
         * @retval false otherwise
         */
-        bool operator==(const SemVersion& version) const;
+        bool operator==(SemVersion const& aVersionToCompareTo) const;
 
         /**
         * Compares whether the given version is greater than the actual version
         *
-        * @param version the version to compare to
+        * @param aVersionToCompareTo the version to compare to
         *
         * @retval true if comparison was successful
         * @retval false otherwise
         */
-        bool operator>(const SemVersion& version) const;
+        bool operator>(SemVersion const& aVersionToCompareTo) const;
 
         /**
-        * Sets the version elements to given parameters.
-        *
-        * @param major the major version
-        * @param minor the minor version
-        * @param patch the patch version
-        */
-        void set(quint16 major, quint16 minor, quint16 patch);
+         * Sets the version elements to given parameters.
+         *
+         * @param aMajorVersion the major version
+         * @param aMinorVersion the minor version
+         * @param aPatchVersion the patch version
+         */
+        void set(quint16 aMajorVersion, quint16 aMinorVersion, quint16 aPatchVersion);
 
         /**
-        * Sets the version elements to given parameters.
-        *
-        * @param major the major version
-        * @param minor the minor version
-        * @param patch the patch version
-        * @param pre_release the pre_release version
-        * @param build the build version
-        */
-        void set(quint16 major, quint16 minor, quint16 patch, const QString& pre_release, const QString& build);
+         * Sets the version elements to given parameters.
+         *
+         * @param aMajorVersion the major version
+         * @param aMinorVersion the minor version
+         * @param aPatchVersion the patch version
+         * @param aPreReleaseVersion the pre-release version
+         * @param aBuildVersion the build version
+         */
+        void set(quint16 aMajorVersion, quint16 aMinorVersion, quint16 aPatchVersion, QString const& aPreReleaseVersion, QString const& aBuildVersion);
 
         /**
          * Sets the version elements to content of version.
          *
-         * @param version the version string
+         * @param aVersionStringToSet the version string
          */
-        void set(const QString& version);
+        void set(QString const& aVersionStringToSet);
 
         /**
-        * Creates a version string with the current parameters.
-        *
-        * @return str the string that was build
-        */
-        QString str(void) const;
+         * Creates a version string with the current parameters.
+         *
+         * @return the string representation of the current parameters
+         */
+        QString str() const;
         /// @}
 
         /// @name Get version elements implementation
         /// @{
         /**
-         * Get the major version
+         * Queries the major version
+         *
+         * @return major version
          */
         inline quint16 getMajor() const
         {
@@ -106,7 +130,9 @@ namespace SemanticVersioning
         }
 
         /**
-         * Get the minor version
+         * Queries the minor version
+         *
+         * @return minor version
          */
         inline quint16 getMinor() const
         {
@@ -114,7 +140,9 @@ namespace SemanticVersioning
         }
 
         /**
-         * Get the patch version
+         * Queries the patch version
+         *
+         * @return patch version
          */
         inline quint16 getPatch() const
         {
@@ -122,7 +150,9 @@ namespace SemanticVersioning
         }
 
         /**
-         * Get the pre-release version
+         * Queries the pre-release version
+         *
+         * @return pre-release version
          */
         inline QString getPreRelease() const
         {
@@ -130,7 +160,9 @@ namespace SemanticVersioning
         }
 
         /**
-         * Get the build version
+         * Queries the build version
+         *
+         * @return build version
          */
         inline QString getBuild() const
         {
@@ -161,7 +193,6 @@ namespace SemanticVersioning
     class bad_format_exception: public std::runtime_error
     {
     public:
-        bad_format_exception(): std::runtime_error("Bad version format.") {};
+        bad_format_exception(): std::runtime_error("Bad version format.") {}
     };
 }
-#endif /* SEMVER_H_ */

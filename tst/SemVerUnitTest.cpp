@@ -107,9 +107,9 @@ void SemVerUnitTest::testComparison()
     // for > operator only major, minor and patch are compared
     Q_ASSERT(sv1 == sv3);
     Q_ASSERT(sv2 > sv1);
-    Q_ASSERT((sv1 > sv2) == FALSE);
-    Q_ASSERT((sv1 > sv4) == FALSE);
+    Q_ASSERT((sv1 > sv2) == false);
+    Q_ASSERT((sv1 > sv4) == false);
     Q_ASSERT(sv4 > sv1);
-    Q_ASSERT((sv4 > sv5) == FALSE);
+    Q_ASSERT((sv4 > sv5) == false);
     Q_ASSERT(sv5 > sv4);
 }
